@@ -1,6 +1,8 @@
 # python3
 def rabin_karp(pattern, text):
     # Define the hash function
+    BASE = 26  # or any other prime number
+    MOD = 10**9+7  # or any other large prime number
     def hash(s):
         h = 0
         for c in s:
