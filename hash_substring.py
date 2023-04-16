@@ -23,3 +23,19 @@ def rabin_karp(pattern, text):
 
     # Output the results
     return matches
+
+# Read input from keyboard
+choice = input()
+if choice == 'I':
+    pattern = input().strip()
+    text = input().strip()
+else:
+    with open('input.txt') as f:
+        pattern = f.readline().strip()
+        text = f.readline().strip()
+
+# Apply the Rabin-Karp algorithm
+matches = rabin_karp(pattern, text)
+
+# Print the output
+print(' '.join(str(i) for i in matches))
