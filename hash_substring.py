@@ -1,32 +1,23 @@
 # python3
+def rabin_karp(pattern, text):
+    # Define the hash function
+    def hash(s):
+        h = 0
+        for c in s:
+            h = (h * BASE + ord(c)) % MOD
+        return h
 
-def read_input():
-    # this function needs to aquire input both from keyboard and file
-    # as before, use capital i (input from keyboard) and capital f (input from file) to choose which input type will follow
-    
-    
-    # after input type choice
-    # read two lines 
-    # first line is pattern 
-    # second line is text in which to look for pattern 
-    
-    # return both lines in one return
-    
-    # this is the sample return, notice the rstrip function
-    return (input().rstrip(), input().rstrip())
+    # Preprocess the pattern and text
+    M = len(pattern)
+    N = len(text)
+    pattern_hash = hash(pattern)
+    text_hashes = [hash(text[i:i+M]) for i in range(N-M+1)]
 
-def print_occurrences(output):
-    # this function should control output, it doesn't need any return
-    print(' '.join(map(str, output)))
+    # Compare the hash values and check for matches
+    matches = []
+    for i, h in enumerate(text_hashes):
+        if h == pattern_hash and text[i:i+M] == pattern:
+            matches.append(i)
 
-def get_occurrences(pattern, text):
-    # this function should find the occurances using Rabin Karp alghoritm 
-
-    # and return an iterable variable
-    return [0]
-
-
-# this part launches the functions
-if __name__ == '__main__':
-    print_occurrences(get_occurrences(*read_input()))
-
+    # Output the results
+    return matches
